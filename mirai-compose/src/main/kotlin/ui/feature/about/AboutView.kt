@@ -19,7 +19,6 @@ import com.arkivanov.decompose.ComponentContext
 import com.youngerhousea.miraicompose.console.MiraiCompose
 import com.youngerhousea.miraicompose.theme.ResourceImage
 import com.youngerhousea.miraicompose.utils.Desktop
-import net.mamoe.mirai.Mirai
 import net.mamoe.mirai.console.MiraiConsole
 import java.net.URI
 
@@ -36,12 +35,13 @@ class About(
             tag = "URL",
             annotation = "https://github.com/sonder-joker/mirai-compose",
         )
+        append("Frontend")
         withStyle(
             style = SpanStyle(
                 fontWeight = FontWeight.Bold
             )
         ) {
-            append("Frontend V ${MiraiCompose.frontEndDescription.version}")
+            append(" v${MiraiCompose.frontEndDescription.version}")
         }
         pop()
 
@@ -51,12 +51,13 @@ class About(
             tag = "URL",
             annotation = "https://github.com/mamoe/mirai",
         )
+        append("Backend")
         withStyle(
             style = SpanStyle(
                 fontWeight = FontWeight.Bold
             )
         ) {
-            append("Backend V ${MiraiConsole.version}")
+            append(" v${MiraiConsole.version}")
         }
         pop()
     }

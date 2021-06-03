@@ -4,6 +4,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -11,11 +12,14 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.shortcuts
+import androidx.compose.ui.unit.dp
 import com.youngerhousea.miraicompose.console.ComposeLog
 import kotlinx.coroutines.launch
 import net.mamoe.mirai.console.command.*
@@ -64,7 +68,7 @@ internal fun CommandSendBox(logger: MiraiLogger, modifier: Modifier = Modifier) 
     }
 
     Row(
-        modifier = modifier,
+        modifier = modifier.offset(y = (-20).dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         OutlinedTextField(
@@ -78,6 +82,11 @@ internal fun CommandSendBox(logger: MiraiLogger, modifier: Modifier = Modifier) 
                     on(Key.Enter, callback = onClick)
                 },
             singleLine = true,
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = Color(0xFFEAEDF2),
+                placeholderColor = Color(0xFFAEDF2),
+                textColor = Color(0xFFAAB0B3)
+            )
         )
 
         Spacer(
