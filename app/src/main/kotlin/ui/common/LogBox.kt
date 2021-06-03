@@ -216,3 +216,4 @@ internal fun CommandReceiverParameter<*>.renderAsName(): String {
         else -> classifier.simpleName ?: classifier.toString()
     }
 }
+

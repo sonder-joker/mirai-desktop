@@ -11,7 +11,6 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import net.mamoe.mirai.Bot
-import net.mamoe.mirai.console.ConsoleFrontEndImplementation
 import net.mamoe.mirai.console.MiraiConsole
 import net.mamoe.mirai.console.MiraiConsoleFrontEndDescription
 import net.mamoe.mirai.console.MiraiConsoleImplementation
@@ -38,7 +37,6 @@ import kotlin.io.path.div
  * MiraiCompose 的实现
  *
  */
-@ConsoleFrontEndImplementation
 object MiraiCompose : MiraiConsoleImplementation,  MiraiComposeRepository,
     CoroutineScope by CoroutineScope(
         NamedSupervisorJob("MiraiCompose") + CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -49,6 +47,7 @@ object MiraiCompose : MiraiConsoleImplementation,  MiraiComposeRepository,
             MiraiConsole.mainLogger.error("Exception in coroutine $coroutineName", throwable)
         }
     ) {
+
     override val rootPath: Path = Paths.get(System.getProperty("user.dir", ".")).toAbsolutePath()
 
     internal val logPath = (rootPath / "log").createDirectories()
@@ -107,6 +106,6 @@ object MiraiCompose : MiraiConsoleImplementation,  MiraiComposeRepository,
 object MiraiComposeDescription : MiraiConsoleFrontEndDescription {
     override val name: String = "MiraiCompose"
     override val vendor: String = "Noire"
-    override val version: SemVersion = SemVersion("0.1.0-dev1")
+    override val version: SemVersion = SemVersion("1.0.0")
 }
 

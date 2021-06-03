@@ -1,4 +1,4 @@
-package ui.feature.about
+package com.youngerhousea.miraicompose.ui.feature.about
 
 
 import kotlinx.serialization.SerialName

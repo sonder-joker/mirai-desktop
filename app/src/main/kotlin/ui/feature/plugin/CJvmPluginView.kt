@@ -12,6 +12,7 @@ import com.youngerhousea.miraicompose.console.AccessibleHolder
 import com.youngerhousea.miraicompose.console.MiraiCompose
 import com.youngerhousea.miraicompose.utils.Component
 import com.youngerhousea.miraicompose.utils.asComponent
+import net.mamoe.mirai.console.ConsoleFrontEndImplementation
 import net.mamoe.mirai.console.command.CommandManager.INSTANCE.registeredCommands
 import net.mamoe.mirai.console.plugin.jvm.JvmPlugin
 
@@ -23,6 +24,7 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPlugin
  * @see DetailedData
  * @see DetailedCommand
  */
+@ConsoleFrontEndImplementation
 class CJvmPlugin(
     componentContext: ComponentContext,
     val plugin: JvmPlugin,
