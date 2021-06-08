@@ -4,11 +4,13 @@ import com.arkivanov.decompose.ComponentContext
 import com.youngerhousea.miraicompose.core.component.bot.InitLogin
 import com.youngerhousea.miraicompose.core.utils.componentScope
 import kotlinx.coroutines.launch
+import net.mamoe.mirai.utils.MiraiLogger
 
 
 internal class InitLoginImpl(
     componentContext: ComponentContext,
     private val onClick: suspend (account: Long, password: String) -> Unit,
+    override val logger: MiraiLogger,
 ) : InitLogin, ComponentContext by componentContext {
     private val scope = componentScope()
 

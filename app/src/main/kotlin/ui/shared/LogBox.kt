@@ -190,7 +190,7 @@ private suspend fun CommandPrompt(
 
 
 @OptIn(ExperimentalCommandDescriptors::class)
-private suspend fun SolveCommandResult(
+suspend fun SolveCommandResult(
     currentCommand: String,
     logger: MiraiLogger
 ) {

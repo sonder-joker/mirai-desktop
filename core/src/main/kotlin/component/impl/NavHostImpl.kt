@@ -8,8 +8,8 @@ import com.arkivanov.decompose.value.Value
 import com.youngerhousea.miraicompose.core.component.NavHost
 import com.youngerhousea.miraicompose.core.component.impl.about.AboutImpl
 import com.youngerhousea.miraicompose.core.component.impl.bot.LoginImpl
-import com.youngerhousea.miraicompose.core.component.impl.message.MessageImpl
 import com.youngerhousea.miraicompose.core.component.impl.log.ConsoleLogImpl
+import com.youngerhousea.miraicompose.core.component.impl.message.MessageImpl
 import com.youngerhousea.miraicompose.core.component.impl.plugin.PluginsImpl
 import com.youngerhousea.miraicompose.core.component.impl.setting.SettingImpl
 import com.youngerhousea.miraicompose.core.console.ComposeBot
@@ -19,7 +19,6 @@ import com.youngerhousea.miraicompose.core.console.toComposeBot
 import com.youngerhousea.miraicompose.core.theme.ComposeSetting
 import net.mamoe.mirai.Bot
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.reflect.full.companionObjectInstance
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
@@ -39,7 +38,7 @@ internal class NavHostImpl(
         childFactory = { config, componentContext ->
             when (config) {
                 is NavHost.Configuration.Login ->
-                    LoginImpl(componentContext, onLoginSuccess = ::onLoginSuccess)
+                    LoginImpl(componentContext, onLoginSuccess = ::onLoginSuccess, MiraiCompose.logger)
                 is NavHost.Configuration.Message ->
                     MessageImpl(componentContext, botList)
                 is NavHost.Configuration.Plugin ->

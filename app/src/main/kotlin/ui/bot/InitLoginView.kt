@@ -20,9 +20,10 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.shortcuts
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
-import com.youngerhousea.miraicompose.core.component.bot.InitLogin
+import com.youngerhousea.miraicompose.app.ui.shared.SolveCommandResult
 import com.youngerhousea.miraicompose.app.utils.R
 import com.youngerhousea.miraicompose.app.utils.ResourceImage
+import com.youngerhousea.miraicompose.core.component.bot.InitLogin
 import kotlinx.coroutines.*
 import net.mamoe.mirai.network.*
 
@@ -39,6 +40,8 @@ fun InitLoginUi(initLogin: InitLogin) {
 
     val state = remember { SnackbarHostState() }
 
+    val autoLogin = remember { mutableStateOf(false) }
+
     val onLogin: () -> Unit = {
         scope.launch {
             runCatching {
@@ -47,6 +50,7 @@ fun InitLoginUi(initLogin: InitLogin) {
                 }
                 if (state.showSnackbar("Loading", "Cancel") == SnackbarResult.ActionPerformed)
                     cancel()
+                SolveCommandResult("/autoLogin add ${account.text} ${password.text}", initLogin.logger)
             }.onFailure {
                 val snackBarText = when (it) {
                     is WrongPasswordException -> {
@@ -107,6 +111,13 @@ fun InitLoginUi(initLogin: InitLogin) {
                 onPasswordTextChange = setPassword,
                 onKeyEnter = onLogin
             )
+            Row {
+                Checkbox(
+                    checked = autoLogin.value,
+                    onCheckedChange = { autoLogin.value = !autoLogin.value },
+                )
+                Text("自动登录")
+            }
             LoginButton(
                 onClick = onLogin,
                 isLoading = isLoading

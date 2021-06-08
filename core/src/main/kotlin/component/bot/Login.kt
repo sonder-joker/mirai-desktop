@@ -6,6 +6,7 @@ import com.arkivanov.decompose.statekeeper.Parcelable
 import com.arkivanov.decompose.value.Value
 import net.mamoe.mirai.Bot
 import net.mamoe.mirai.network.CustomLoginFailedException
+import net.mamoe.mirai.utils.MiraiLogger
 
 /**
  * 登录界面
@@ -17,8 +18,10 @@ import net.mamoe.mirai.network.CustomLoginFailedException
  * @see SolveSliderCaptcha
  * @see SolveUnsafeDeviceLoginVerify
  */
-interface Login{
+interface Login {
     val state: Value<RouterState<Configuration, ComponentContext>>
+
+    val logger: MiraiLogger
 
     sealed class Configuration : Parcelable {
         object InitLogin : Configuration()

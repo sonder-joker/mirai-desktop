@@ -9,6 +9,7 @@ import net.mamoe.mirai.Bot
 import net.mamoe.mirai.alsoLogin
 import net.mamoe.mirai.console.MiraiConsole
 import net.mamoe.mirai.utils.LoginSolver
+import net.mamoe.mirai.utils.MiraiLogger
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -17,6 +18,7 @@ import kotlin.coroutines.suspendCoroutine
 internal class LoginImpl(
     componentContext: ComponentContext,
     private val onLoginSuccess: (bot: Bot) -> Unit,
+    override val logger: MiraiLogger,
 ) : Login, LoginSolver(), ComponentContext by componentContext {
 
     private val router: Router<Login.Configuration, ComponentContext> = router(
@@ -28,7 +30,8 @@ internal class LoginImpl(
                 is Login.Configuration.InitLogin ->
                     InitLoginImpl(
                         componentContext,
-                        onClick = ::startLogin
+                        onClick = ::startLogin,
+                        logger
                     )
                 is Login.Configuration.SolvePicCaptcha ->
                     //TODO:简化参数
